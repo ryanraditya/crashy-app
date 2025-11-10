@@ -8,11 +8,11 @@ app.use(express.static(path.join(__dirname)));
 
 // Mode crash aktif?
 if (process.env.CRASH === 'true') {
-  console.log('💥 Crash mode aktif! Aplikasi akan crash dalam 5 detik...');
+  console.log('💥 Crash mode aktif! Aplikasi akan crash dalam 1 detik...');
   setTimeout(() => {
     console.log('💥 Simulated crash triggered!');
     process.exit(1);
-  }, 5000);
+  }, 1000); // crash tiap 1 detik
 }
 
 app.listen(PORT, () => {
