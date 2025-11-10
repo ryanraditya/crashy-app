@@ -1,15 +1,26 @@
 const express = require('express');
 const app = express();
+const PORT = 3000;
 
+// Serve file HTML & CSS
+app.use(express.static(__dirname));
+
+// Route utama
 app.get('/', (req, res) => {
-    res.send('Crashy app is running... but will crash soon 😅');
+  res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(3000, () => {
-    console.log('Server running on port 3000');
-    // simulate crash after 5 seconds
-    setTimeout(() => {
-        console.error('💥 Simulated crash!');
-        process.exit(1);
-    }, 5000);
+// Tambahkan kondisi crash lewat environment variable
+if (process.env.CRASH === 'true') {
+  console.log('💥 Simulated crash mode aktif!');
+  setTimeout(() => {
+    console.log('💥 Crashing the app...');
+    process.exit(1);
+  }, 5000);
+} else {
+  console.log('🚀 App berjalan normal di port', PORT);
+}
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
