@@ -15,6 +15,7 @@ if (process.env.CRASH === 'true') {
   }, 1000); // crash tiap 1 detik
 }
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Web Masjid running on port ${PORT}`);
 });
+
